@@ -5,8 +5,6 @@ Bitrix ArsenalPay CMS is software development kit for fast simple and seamless i
 
 [Arsenal Pay processing center](https://arsenalpay.ru/)
 
-*Has been tested on Webasyst Shop-Script 4 (309 edition)*
-
 Basic feature list:
 
  * Allows seamlessly integrate unified payment frame into your site.
