@@ -21,7 +21,7 @@ Basic feature list:
 
 За более подробной информацией о платежной системе ArsenalPay зайдите на [arsenalpay.ru](https://arsenalpay.ru).
 
-#### Вручную:
+#### Установка:
 1. Скопируйте папку arsenalpay.second в каталог "…\www\bitrix\modules" (в случае использования Windows версии каталог будет иметь примерно такой путь "C:\Program Files\Bitrix Environment\www\bitrix\modules");
 2. Зайдите в администрирование BITRIX;
 3. Выберите закладку "Marketplace" в левом меню;
