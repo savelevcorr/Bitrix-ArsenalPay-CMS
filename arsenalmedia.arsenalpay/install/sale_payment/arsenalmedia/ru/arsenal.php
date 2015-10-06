@@ -1,7 +1,7 @@
-<?
+ï»¿<?
 global $MESS;
 
-$MESS["AM_DTITLE"] = "Ïëàòåæíàÿ ñèñòåìà arsenal_media";
-$MESS["AM_TELEPHONE"] = "Òåëåôîí";
-$MESS["AM_TITLE_DESC"] = "Ïëàòåæíàÿ ñèñòåìà arsenal_media";
+$MESS["AM_DTITLE"] = "ÐŸÐ»Ð°Ñ‚ÐµÐ¶Ð½Ð°Ñ ÑÐ¸ÑÑ‚ÐµÐ¼Ð° arsenal_media";
+$MESS["AM_TELEPHONE"] = "Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½";
+$MESS["AM_TITLE_DESC"] = "ÐŸÐ»Ð°Ñ‚ÐµÐ¶Ð½Ð°Ñ ÑÐ¸ÑÑ‚ÐµÐ¼Ð° arsenal_media";
 ?>

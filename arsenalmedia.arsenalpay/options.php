@@ -1,4 +1,4 @@
-<?
+﻿<?
 //options page, display in admin panel.
 IncludeModuleLangFile(__FILE__);
 $module_id = "arsenalmedia.arsenalpay";

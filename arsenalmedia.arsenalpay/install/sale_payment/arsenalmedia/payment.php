@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	
 	//receive options
     $order_id = IntVal($GLOBALS["SALE_INPUT_PARAMS"]["ORDER"]["ID"]);

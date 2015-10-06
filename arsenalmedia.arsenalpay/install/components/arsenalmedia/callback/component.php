@@ -1,4 +1,4 @@
-<?
+ï»¿<?
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 if(!CModule::IncludeModule('arsenalmedia.arsenalpay'))
@@ -39,7 +39,7 @@ if(strlen($IP_ALLOW)>0 && $IP_ALLOW!=$REMOTE_ADDR) exitf("ERR_IP");
 	AMOUNT   - Amount of payment
 	ACCOUNT  - Identifier of the recipient
 	STATUS   - Status of the payment
-	DATETIME - Date and time by ISO 8601 (YYYY-MM-DDThh:mm:ss±hh:mm), URL-encoded
+	DATETIME - Date and time by ISO 8601 (YYYY-MM-DDThh:mm:ssÂ±hh:mm), URL-encoded
 	SIGN     - Signature of request
 */
 
@@ -103,7 +103,7 @@ elseif($FUNCTION=="payment")
 		"PS_STATUS" => "Y",
 		"PS_STATUS_CODE" => "-",
 		"PS_STATUS_DESCRIPTION" => "PAYED",
-		"PS_STATUS_MESSAGE" => "Îïëà÷åíî",
+		"PS_STATUS_MESSAGE" => "ÐžÐ¿Ð»Ð°Ñ‡ÐµÐ½Ð¾",
 		"PS_SUM" => $AMOUNT,
 		"PS_CURRENCY" => "",
 		"PS_RESPONSE_DATE" => Date(CDatabase::DateFormatToPHP(CLang::GetDateFormat("FULL", LANG))),

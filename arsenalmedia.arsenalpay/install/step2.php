@@ -1,4 +1,4 @@
-<?//Install module step 2, save options?>
+﻿<?//Install module step 2, save options?>
 <?if(check_bitrix_sessid())
 {
     COption::SetOptionString('arsenalmedia.arsenalpay','token',$_POST['token']);
