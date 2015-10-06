@@ -21,7 +21,7 @@ Basic feature list:
 За более подробной информацией о платежной системе ArsenalPay зайдите на [arsenalpay.ru](https://arsenalpay.ru).
 
 ### УСТАНОВКА 
-#### Через маркет:
+#### Через маркет (предпочтительный способ):
 1. Зайдите на [1С БИТРИКС МАРКЕТПЛЕЙС](http://marketplace.1c-bitrix.ru/solutions/arsenalmedia.arsenalpay)
 2. Нажмите на "Установить"
 3. Укажите адрес сайта Вашего магазина
