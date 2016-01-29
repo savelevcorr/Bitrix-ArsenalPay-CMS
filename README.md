@@ -35,7 +35,7 @@ Basic feature list:
 5. Найдите в списке модуль ArsenalPay и нажмите "Установить".
 
 #### Вручную:
-1. Скопируйте папку arsenalmedia.arsenalpay в каталог "…\www\bitrix\modules" (в случае использования Windows версии каталог будет иметь примерно такой путь "C:\Program Files\Bitrix Environment\www\bitrix\modules");
+1. Скопируйте папку arsenalmedia.arsenalpay в каталог "bitrix\modules"
 2. Зайдите в администрирование BITRIX;
 3. Выберите закладку "Marketplace" в левом меню;
 4. Выберите пункт "Установленные решения";
