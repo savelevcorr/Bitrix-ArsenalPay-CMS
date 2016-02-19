@@ -1,4 +1,4 @@
-﻿<?//Install module step 1, configure options?>
+<?//Install module step 1, configure options?>
 <style>
 span.annotation
 {

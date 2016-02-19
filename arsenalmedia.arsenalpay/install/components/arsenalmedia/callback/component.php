@@ -1,4 +1,4 @@
-п»ї<?
+<?
 if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 if(!CModule::IncludeModule('arsenalmedia.arsenalpay'))
@@ -26,7 +26,7 @@ foreach ($_POST as $post_key => $post_value)
 	$str_log.= "$post_key=$post_value ";
 	$$post_key = $post_value;
 }
-post_log($str_log);
+logf($str_log);
 
 // Check IP allow:
 if(strlen($IP_ALLOW)>0 && $IP_ALLOW!=$REMOTE_ADDR) exitf("ERR_IP");
@@ -39,7 +39,7 @@ if(strlen($IP_ALLOW)>0 && $IP_ALLOW!=$REMOTE_ADDR) exitf("ERR_IP");
 	AMOUNT   - Amount of payment
 	ACCOUNT  - Identifier of the recipient
 	STATUS   - Status of the payment
-	DATETIME - Date and time by ISO 8601 (YYYY-MM-DDThh:mm:ssВ±hh:mm), URL-encoded
+	DATETIME - Date and time by ISO 8601 (YYYY-MM-DDThh:mm:ss?hh:mm), URL-encoded
 	SIGN     - Signature of request
 */
 
@@ -57,6 +57,17 @@ if(strlen($DATETIME) == 0) exitf("ERR_DATETIME");
 // Check Signature
 if(strlen($SIGN)==0 || $SIGN!=md5(md5($ID).md5($FUNCTION).md5($RRN).md5($PAYER).md5($AMOUNT).md5($ACCOUNT).md5($STATUS).md5($KEY))) exitf("ERR_SIGN");
 
+$bCorrectPayment = False;
+$bLessPayment = False;
+
+if(IntVal($ACCOUNT) > 0)
+{
+	$bCorrectPayment = True;
+	if (!($arOrder = CSaleOrder::GetByID(IntVal($ACCOUNT))))
+		$bCorrectPayment = False;	
+	elseif ($arOrder["PAYED"] == "Y")
+		$bCorrectPayment = False;
+}
 if($FUNCTION=="check")
 {
 	// Check account
@@ -66,19 +77,6 @@ if($FUNCTION=="check")
 		YES - account exists
 		NO - account not exists
 	*/
-	// For example:	
-	$bCorrectPayment = false;
-	
-	if(IntVal($ACCOUNT) > 0)
-	{
-		$bCorrectPayment = True;
-		if (!($arOrder = CSaleOrder::GetByID(IntVal($ACCOUNT))))
-			$bCorrectPayment = False;	
-			
-		else if ($arOrder["PAYED"] == "Y")
-			$bCorrectPayment = False;
-	}
-	
 	if($bCorrectPayment)
 	{	
 		exitf("YES");
@@ -97,28 +95,34 @@ elseif($FUNCTION=="payment")
 		OK - success saving
 		ERR - error saving
 	*/
+    if ($MERCH_TYPE == 0 && $arOrder["PRICE"] == $AMOUNT) {
+    	$bLessPayment = False;
+    }
+    elseif ($MERCH_TYPE == 1 && $arOrder["PRICE"] >= $AMOUNT && $arOrder["PRICE"] == $AMOUNT_FULL) {
+    	$bLessPayment = True;
+    }
+    else {
+    	exitf("ERR_AMOUNT");
+    }
 
-	$arOrder = CSaleOrder::GetByID(IntVal($ACCOUNT));
 	$arFields = array(
 		"PS_STATUS" => "Y",
 		"PS_STATUS_CODE" => "-",
 		"PS_STATUS_DESCRIPTION" => "PAYED",
-		"PS_STATUS_MESSAGE" => "РћРїР»Р°С‡РµРЅРѕ",
+		"PS_STATUS_MESSAGE" => "Оплачено",
 		"PS_SUM" => $AMOUNT,
 		"PS_CURRENCY" => "",
 		"PS_RESPONSE_DATE" => Date(CDatabase::DateFormatToPHP(CLang::GetDateFormat("FULL", LANG))),
+
+		"PAYED" => "Y",
+		"DATE_PAYED" => Date(CDatabase::DateFormatToPHP(CLang::GetDateFormat("FULL", LANG))),
+		"EMP_PAYED_ID" => False,
 	);
-	
-	if ($arOrder["PRICE"] == $AMOUNT)
-	{
-		$arFields["PAYED"] = "Y";
-		$arFields["DATE_PAYED"] = Date(CDatabase::DateFormatToPHP(CLang::GetDateFormat("FULL", LANG)));
-		$arFields["EMP_PAYED_ID"] = false;
-	}
 
 	if(CSaleOrder::Update($arOrder["ID"], $arFields))
 	{
 		CSaleOrder::StatusOrder($arOrder["ID"], "P");
+		logf("По заказу #{$ACCOUNT} оплачено {$AMOUNT}");
 		exitf("OK");
 	}
 	else
@@ -140,10 +144,10 @@ function exitf($msg)
 	exit;
 }
 
-function post_log($str)
+function logf($str)
 {
 	$fp=fopen(realpath(dirname(__FILE__))."/callback.log","a");
-	fwrite($fp,$str."\r\n");
+	fwrite($fp, $str."\r\n");
 	fclose($fp);
 }
 ?>

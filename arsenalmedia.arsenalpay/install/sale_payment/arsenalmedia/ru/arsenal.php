@@ -1,4 +1,4 @@
-﻿<?
+<?
 global $MESS;
 
 $MESS["AM_DTITLE"] = "Платежная система arsenal_media";

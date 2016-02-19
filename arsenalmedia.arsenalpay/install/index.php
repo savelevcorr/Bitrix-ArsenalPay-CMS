@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //Main module file, install, uninstall.
 IncludeModuleLangFile(__FILE__);
 
